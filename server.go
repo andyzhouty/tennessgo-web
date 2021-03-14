@@ -35,7 +35,7 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 		err = handleAPIPost(w, r)
 	}
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 }
@@ -45,10 +45,7 @@ func handleAPIGet(w http.ResponseWriter, r *http.Request) (err error) {
 		"name":        "Tennessine-Go API",
 		"description": "处理不规范中文句子的Web API",
 	}
-	output, err := json.MarshalIndent(&response, "", "\t")
-	if err != nil {
-		return
-	}
+	output, _ := json.MarshalIndent(&response, "", "\t")
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(output)
 	return

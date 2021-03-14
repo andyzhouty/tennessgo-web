@@ -36,7 +36,7 @@ jobs:
             gotestsum --junitfile /tmp/test-reports/unit-tests.xml
       - run:
           name: Run coverage
-          commmand: |
+          command: |
             go test -race -coverprofile=coverage.out -covermode=atomic
       - store_test_results:
           path: /tmp/test-reports
