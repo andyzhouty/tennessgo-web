@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"os"
 
 	"github.com/z-t-y/tennessgo"
 )
@@ -19,7 +20,7 @@ type ResponseModel struct {
 
 func main() {
 	server := http.Server{
-		Addr: "127.0.0.1:8080",
+		Addr: ":" + os.Getenv("PORT"), // 从环境变量中获取端口号
 	}
 	http.HandleFunc("/api", handleAPIRequest)
 	server.ListenAndServe()
