@@ -2,10 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	"errors"
 	"net/http"
 	"os"
+	"strings"
 
+	"github.com/rs/cors"
 	"github.com/z-t-y/tennessgo"
 )
 
@@ -19,11 +20,10 @@ type ResponseModel struct {
 }
 
 func main() {
-	server := http.Server{
-		Addr: ":" + os.Getenv("PORT"), // 从环境变量中获取端口号
-	}
-	http.HandleFunc("/api", handleAPIRequest)
-	server.ListenAndServe()
+	mux := http.NewServeMux()
+	mux.HandleFunc("/api", handleAPIRequest)
+	corsHandler := cors.Default().Handler(mux)
+	http.ListenAndServe(":"+os.Getenv("PORT"), corsHandler)
 }
 
 func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +35,11 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 		err = handleAPIPost(w, r)
 	}
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
+		if strings.Contains(err.Error(), "empty string") {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+		} else {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+		}
 		return
 	}
 }
@@ -66,10 +70,7 @@ func handleAPIPost(w http.ResponseWriter, r *http.Request) (err error) {
 		ToTranslate: request.ToTranslate,
 		Translated:  translated,
 	}
-	output, err := json.MarshalIndent(response, "", "\t")
-	if err != nil {
-		return errors.New("error while marshaling json: " + err.Error())
-	}
+	output, _ := json.MarshalIndent(response, "", "\t")
 	w.Write(output)
 	return
 }
