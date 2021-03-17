@@ -1,6 +1,4 @@
 github.com/rs/cors v1.7.0 h1:+88SsELBHx5r+hZ8TCkggzSstaWNbDvThkVK8H6f9ik=
 github.com/rs/cors v1.7.0/go.mod h1:gFx+x8UowdsKA9AchylcLynDq+nNFfI8FkUZdN/jGCU=
-github.com/z-t-y/tennessgo v0.0.0-20210313122339-cb50c88a5e10 h1:6XRKBwP1jsC+V3fc5RyuKiszTPz2uqsaiaJ3H0i7xGI=
-github.com/z-t-y/tennessgo v0.0.0-20210313122339-cb50c88a5e10/go.mod h1:ZkmAkYeachmTEJ++bfJ8kLltYx6eAYLjdQksIzUTK4M=
 github.com/z-t-y/tennessgo v0.0.0-20210314023012-471581ce4a4c h1:Yc5Fh/Y5Q+WQFSwjrqoxBWM1GAE/ESeLq3RGF09unt8=
 github.com/z-t-y/tennessgo v0.0.0-20210314023012-471581ce4a4c/go.mod h1:ZkmAkYeachmTEJ++bfJ8kLltYx6eAYLjdQksIzUTK4M=
