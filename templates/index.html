@@ -1,0 +1,31 @@
+{{ define "content" }}
+<header style="text-align: center;">
+    <h1 class="display-4">TennessGo 不规范中文规范化程序</h1>
+    <p class="text-muted">使用Go语言编写</p>
+</header>
+<form action="/" method="POST">
+    <input id="input" type="text" name="informal" placeholder="请输入一句不那么规范的中文句子" class="form-control">
+    <p class="text-danger"><small id="err">{{ .err }}</small></p>
+</form>
+    <div id="result"></div>
+</div>
+<script>
+    $("#input").keyup(function() {
+        let content = $("#input").val()
+        $.ajax({
+            type: "post",
+            url: "/api",
+            dataType : "json",
+            data: JSON.stringify({"to_translate": content}),
+            success: function (result) {
+                if (result["error"]) {
+                    $("#err").html(result["error"])
+                } else {
+                    $("#err").html("")
+                }
+                $("#result").html(result["translated"])
+            }
+        });
+    });
+</script>
+{{ end }}

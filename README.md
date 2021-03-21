@@ -3,7 +3,7 @@
 ![GitHub](https://img.shields.io/github/license/z-t-y/tennessgo-web)
 ![CircleCI](https://img.shields.io/circleci/build/gh/z-t-y/tennessgo-web/main?label=circleci&logo=circleci)
 
-对[github.com/z-t-y/tennessgo](https://github.com/z-t-y/tennessgo)进行封装，实现Web API接口，网址为[tg-web.herokuapp.com/api](https://tg-web.herokuapp.com/api)
+对[github.com/z-t-y/tennessgo](https://github.com/z-t-y/tennessgo)进行封装，实现Web API接口，网址为[tg-web.herokuapp.com](https://tg-web.herokuapp.com)
 
 ## 简易文档
 
@@ -11,7 +11,7 @@
 
 ### 概述
 
-- URL: /api
+- URL: [tg-web.herokuapp.com/api](https://tg-web.herokuapp.com/api)
 
 - 支持的HTTP方法: *GET*, *POST*
 
@@ -53,6 +53,15 @@ curl -d '{"to_translate":"发生甚么事了是啥意思"}' https://tg-web.herok
 }
 ```
 
-如果`to_translate`为空字符串或不存在
+如果`to_translate`为空字符串或不存在，为方便AJAX使用，不会返回异常状态
 
-则会返回400状态码和`empty string to translate`的异常
+而会返回
+
+```json
+{
+    "error": "error message", // 是具体报错情况而定
+    "translated": ""
+}
+```
+
+提示：如果想要为Tennessine-Go构建客户端程序，则可以对error是否为空进行判断

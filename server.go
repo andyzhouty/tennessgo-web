@@ -2,9 +2,9 @@ package main
 
 import (
 	"encoding/json"
+	"html/template"
 	"net/http"
 	"os"
-	"strings"
 
 	"github.com/rs/cors"
 	"github.com/z-t-y/tennessgo"
@@ -21,6 +21,7 @@ type ResponseModel struct {
 
 func main() {
 	mux := http.NewServeMux()
+	mux.HandleFunc("/", index)
 	mux.HandleFunc("/api", handleAPIRequest)
 	corsHandler := cors.Default().Handler(mux)
 	var port = os.Getenv("PORT")
@@ -28,6 +29,22 @@ func main() {
 		port = "8080"
 	}
 	http.ListenAndServe(":"+port, corsHandler)
+}
+
+func index(w http.ResponseWriter, r *http.Request) {
+	files := []string{"templates/index.html", "templates/layout.html"}
+	t := template.Must(template.ParseFiles(files...))
+	switch r.Method {
+	case "GET":
+		t.ExecuteTemplate(w, "layout", nil)
+	case "POST":
+		tr := tennessgo.NewTranslation(r.FormValue("text"))
+		result, err := tr.Translate()
+		t.ExecuteTemplate(w, "layout", map[string]string{
+			"err":  err.Error(),
+			"data": result,
+		})
+	}
 }
 
 func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
@@ -39,11 +56,11 @@ func handleAPIRequest(w http.ResponseWriter, r *http.Request) {
 		err = handleAPIPost(w, r)
 	}
 	if err != nil {
-		if strings.Contains(err.Error(), "empty string") {
-			http.Error(w, err.Error(), http.StatusBadRequest)
-		} else {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-		}
+		output, _ := json.MarshalIndent(&map[string]string{
+			"translated": "",
+			"error":      err.Error(),
+		}, "", "\t")
+		w.Write(output)
 		return
 	}
 }
