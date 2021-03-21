@@ -23,7 +23,11 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/api", handleAPIRequest)
 	corsHandler := cors.Default().Handler(mux)
-	http.ListenAndServe(":"+os.Getenv("PORT"), corsHandler)
+	var port = os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	http.ListenAndServe(":"+port, corsHandler)
 }
 
 func handleAPIRequest(w http.ResponseWriter, r *http.Request) {

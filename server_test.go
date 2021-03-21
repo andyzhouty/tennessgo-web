@@ -66,7 +66,11 @@ func TestAPIPost(t *testing.T) {
 func TestMain(t *testing.T) {
 	go main()                    // 在新goroutine中启动服务器
 	time.Sleep(time.Millisecond) // 等待服务器启动
-	resp, err := http.Get("http://localhost:" + os.Getenv("PORT") + "/api")
+	var port = os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	resp, err := http.Get("http://localhost:" + port + "/api")
 	if err != nil {
 		t.Error(err.Error())
 		return
