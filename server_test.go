@@ -55,7 +55,9 @@ func TestAPIPost(t *testing.T) {
 		writer := httptest.NewRecorder()
 		jsonData := strings.NewReader(`{"to_translate":""}`)
 		request, _ := http.NewRequest("POST", "/api", jsonData)
+		var resp map[string]string
 		mux.ServeHTTP(writer, request) // 发送请求
-		checkEquation(writer.Code, 400, t)
+		json.Unmarshal(writer.Body.Bytes(), &resp)
+		checkEquation(resp["error"], "empty string to translate", t)
 	})
 }
