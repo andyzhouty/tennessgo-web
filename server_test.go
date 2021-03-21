@@ -2,10 +2,13 @@ package main
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"strings"
 	"testing"
+	"time"
 )
 
 func checkEquation(got, want interface{}, t *testing.T) {
@@ -58,4 +61,27 @@ func TestAPIPost(t *testing.T) {
 		mux.ServeHTTP(writer, request) // 发送请求
 		checkEquation(writer.Code, 400, t)
 	})
+}
+
+func TestMain(t *testing.T) {
+	go main()                    // 在新goroutine中启动服务器
+	time.Sleep(time.Millisecond) // 等待服务器启动
+	resp, err := http.Get("http://localhost:" + os.Getenv("PORT") + "/api")
+	if err != nil {
+		t.Error(err.Error())
+		return
+	}
+	defer resp.Body.Close()
+
+	bytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		t.Error(err.Error())
+		return
+	}
+
+	var dataMap map[string]string
+	json.Unmarshal(bytes, &dataMap)
+	if dataMap["name"] != "Tennessine-Go API" {
+		t.Error("incorrect data received")
+	}
 }
