@@ -8,3 +8,5 @@ github.com/z-t-y/tennessgo v0.0.0-20210321105744-ad4f28a5ab05 h1:ny7BBcbn+L7ffNT
 github.com/z-t-y/tennessgo v0.0.0-20210321105744-ad4f28a5ab05/go.mod h1:ZkmAkYeachmTEJ++bfJ8kLltYx6eAYLjdQksIzUTK4M=
 github.com/z-t-y/tennessgo v0.0.0-20210326131003-1a8a4ba361a5 h1:5GQYIwzb6VFk85588KFdwBVvTB3V8yfLbRgBBhcy1Ng=
 github.com/z-t-y/tennessgo v0.0.0-20210326131003-1a8a4ba361a5/go.mod h1:09jAHKUfqkEz2100b8yt/4AGYpETN9uPQDVOQo7WKuQ=
+github.com/z-t-y/tennessgo v0.0.0-20210327002259-5eac3c23c56f h1:6sbvpdZegfJ69S2NcHQBHj3qbwHHXhQM1+Qark+T5oQ=
+github.com/z-t-y/tennessgo v0.0.0-20210327002259-5eac3c23c56f/go.mod h1:ZkmAkYeachmTEJ++bfJ8kLltYx6eAYLjdQksIzUTK4M=
