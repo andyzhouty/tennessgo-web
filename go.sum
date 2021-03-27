@@ -1,4 +1,8 @@
 github.com/rs/cors v1.7.0 h1:+88SsELBHx5r+hZ8TCkggzSstaWNbDvThkVK8H6f9ik=
 github.com/rs/cors v1.7.0/go.mod h1:gFx+x8UowdsKA9AchylcLynDq+nNFfI8FkUZdN/jGCU=
-github.com/z-t-y/tennessgo v0.0.0-20210327002259-5eac3c23c56f h1:6sbvpdZegfJ69S2NcHQBHj3qbwHHXhQM1+Qark+T5oQ=
-github.com/z-t-y/tennessgo v0.0.0-20210327002259-5eac3c23c56f/go.mod h1:ZkmAkYeachmTEJ++bfJ8kLltYx6eAYLjdQksIzUTK4M=
+github.com/wangbin/jiebago v0.3.2 h1:reQKp0xTXWFK7eQ19L6Ofq5xODSR2hcam55qcdCCNpw=
+github.com/wangbin/jiebago v0.3.2/go.mod h1:PAqQLauF0qAzy/63jBvO7Goh0oYBq1ocr0OXHLlujwQ=
+github.com/z-t-y/tennessgo v0.0.0-20210327011800-69daee0e74c4 h1:QCy1/9H7C9lxtPCS3aDPozzZ955w8qC6IC0RNvOwDUo=
+github.com/z-t-y/tennessgo v0.0.0-20210327011800-69daee0e74c4/go.mod h1:H6PyaYyBQ7KIqtEDpbuJfrY7tpdX6KY9aCC8+TQWSYQ=
+github.com/z-t-y/tennessgo v0.0.0-20210327021239-6d748010e74e h1:hRSa8/lsiUbtQUY6g6BHpzX7Dk0jpfhFFjp4KUVcock=
+github.com/z-t-y/tennessgo v0.0.0-20210327021239-6d748010e74e/go.mod h1:H6PyaYyBQ7KIqtEDpbuJfrY7tpdX6KY9aCC8+TQWSYQ=
