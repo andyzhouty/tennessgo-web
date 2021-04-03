@@ -61,3 +61,16 @@ func TestAPIPost(t *testing.T) {
 		checkEquation(resp["error"], "empty string to translate", t)
 	})
 }
+
+func TestFrontend(t *testing.T) {
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", index)
+
+	writer := httptest.NewRecorder()
+	request, _ := http.NewRequest("GET", "/", nil)
+	mux.ServeHTTP(writer, request) // 发送请求
+
+	if writer.Code != 200 {
+		t.Errorf("Response code is %v", writer.Code)
+	}
+}

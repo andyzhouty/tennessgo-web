@@ -1,4 +1,4 @@
-module tennessgo-web
+module github.com/z-t-y/tennessgo-web
 
 go 1.16
 

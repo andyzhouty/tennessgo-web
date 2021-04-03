@@ -1,8 +1,8 @@
 #build stage
 FROM golang:alpine
 
-COPY . /go/src/tennessgo-web
-WORKDIR /go/src/tennessgo-web
+COPY . /go/src/github.com/z-t-y/tennessgo-web
+WORKDIR /go/src/github.com/z-t-y/tennessgo-web
 
 ENV PORT=8080
 ENV GOPROXY=https://goproxy.io,direct
