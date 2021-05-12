@@ -1,0 +1,7 @@
+{{ define "content" }}
+<form method="POST">
+    <input type="text" name="text" class="form-control" placeholder="请在此处键入搜索内容">
+</form>
+<iframe src="https://wap.baidu.com/s?wd={{ .data }}" style="width: 100%; height: 600px;">
+</iframe>
+{{ end }}

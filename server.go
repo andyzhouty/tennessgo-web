@@ -22,6 +22,7 @@ type ResponseModel struct {
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", index)
+	mux.HandleFunc("/bd", baidu)
 	mux.HandleFunc("/api", handleAPIRequest)
 	corsHandler := cors.Default().Handler(mux)
 	var port = os.Getenv("PORT")
@@ -42,6 +43,21 @@ func index(w http.ResponseWriter, r *http.Request) {
 		result, err := tr.Translate()
 		t.ExecuteTemplate(w, "layout", map[string]string{
 			"err":  err.Error(),
+			"data": result,
+		})
+	}
+}
+
+func baidu(w http.ResponseWriter, r *http.Request) {
+	files := []string{"templates/baidu.html", "templates/layout.html"}
+	t := template.Must(template.ParseFiles(files...))
+	switch r.Method {
+	case "GET":
+		t.ExecuteTemplate(w, "layout", nil)
+	case "POST":
+		tr := tennessgo.NewTranslation(r.FormValue("text"))
+		result, _ := tr.Translate()
+		t.ExecuteTemplate(w, "layout", map[string]string{
 			"data": result,
 		})
 	}
